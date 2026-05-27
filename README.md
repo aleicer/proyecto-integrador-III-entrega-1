@@ -1,6 +1,6 @@
 # Proyecto integrador III — Entrega 1
 
-Análisis exploratorio de datos (**EDA**) sobre abandono de clientes (**churn**) en una empresa de telecomunicaciones, desarrollado en el notebook `Telco.ipynb`.
+Análisis exploratorio de datos (**EDA**) sobre abandono de clientes (**churn**) en una empresa de telecomunicaciones, desarrollado en el notebook `EA1_Telco.ipynb`.
 
 ## Participantes
 
@@ -91,3 +91,47 @@ Python, **pandas**, **matplotlib**, **seaborn**.
 ---
 
 Para ejecutar `EA2_Telco_Limpieza.ipynb` localmente, coloca el archivo `WA_Fn-UseC_-Telco-Customer-Churn.csv` en la misma carpeta del notebook antes de correrlo.
+
+
+---
+# Proyecto integrador III — Entrega 3
+
+## Anexo — Dashboard Power BI (`analisisTelcoW.pbix`)
+
+Informe interactivo de **Power BI** que complementa el EDA del notebook `EA1_Telco.ipynb`. Consolida visualizaciones y segmentaciones sobre el dataset **Telco Customer Churn** para explorar patrones de abandono y apoyar la priorización de acciones de retención.
+
+### Contenido del informe
+
+- Visualizaciones de tasas y distribuciones de **churn** por variables demográficas, de contrato, servicios y facturación.
+- Cruces y filtros alineados con las **tres hipótesis** y la **pregunta analítica** del proyecto.
+- Segmentación orientada a identificar perfiles de mayor riesgo de cancelación.
+
+### Cómo abrirlo
+
+1. Instalar [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (Windows).
+2. Abrir `analisisTelcoW.pbix` desde la raíz del repositorio.
+3. Si el informe referencia un archivo local (CSV o Excel), apuntar la fuente de datos al dataset del proyecto (`WA_Fn-UseC_-Telco-Customer-Churn.csv` o `telco_customer_churn_limpio.csv`, según la versión usada al publicar el `.pbix`).
+
+### Conclusiones del análisis exploratorio
+
+El análisis exploratorio permitió identificar con claridad los factores que más influyen en la cancelación del servicio. De las tres hipótesis planteadas, **dos quedaron completamente confirmadas** y **una fue confirmada de forma parcial**:
+
+| Hipótesis | Resultado en el dashboard |
+|-----------|---------------------------|
+| Contrato mes a mes vs. largo plazo | **Confirmada.** El tipo de contrato es el predictor más fuerte: clientes mes a mes cancelan a una tasa **~15 veces mayor** que los de contrato a dos años. |
+| Ausencia de servicios de valor agregado | **Confirmada.** Servicios como el **soporte técnico** reducen el churn aproximadamente a la **mitad**. |
+| Cargos mensuales altos y churn | **Parcialmente confirmada.** Los cargos mensuales más altos **sí** correlacionan con mayor abandono, pero la **antigüedad del cliente** (`meses_permanencia`) tiene un **efecto protector más pronunciado**. |
+
+**Respuesta a la pregunta de investigación:** los usuarios con mayor probabilidad de abandonar el servicio en los **próximos 60 días** son quienes combinan:
+
+- Contrato **mes a mes**
+- Menos de **12 meses** de antigüedad
+- **Sin** servicios adicionales contratados
+- Acceso a **fibra óptica**
+- Pago mediante **cheque electrónico**
+
+Este perfil debe ser la **primera prioridad** en campañas de re-engagement.
+
+### Líneas de trabajo futuro
+
+El informe dejó visibles dos segmentos que requieren **análisis adicional**: clientes con **fibra óptica** y quienes pagan con **cheque electrónico**, ambos con patrones de churn inusualmente altos no explicados del todo por las hipótesis originales. En entregas siguientes conviene profundizar con un **modelo predictivo** que cuantifique el riesgo individual de cada cliente.
